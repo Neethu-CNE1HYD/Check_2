@@ -11,8 +11,7 @@ void crash_throw(void); /* src/nav_throw.cpp */
 
 static void log_start(const char *mode)
 {
-    fprintf(stderr, "nav_service %s: starting mode '%s'
-", NAV_VERSION, mode);
+    fprintf(stderr, "nav_service %s: starting mode '%s'\n", NAV_VERSION, mode);
 }
 
 static void crash_null(void)

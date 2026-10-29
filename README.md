@@ -31,15 +31,15 @@ ulimit -c unlimited
 
 | mode | file | line | function | signal | notes |
 |---|---|---|---|---|---|
-| `null` | `src/nav_service.c` | 21 | `crash_null` | SIGSEGV |  |
-| `stack` | `src/nav_service.c` | 28 | `crash_stack (recursive)` | SIGSEGV | thousands of identical crash_stack frames |
-| `abort` | `src/nav_service.c` | 33 | `crash_abort` | SIGABRT | user frame is the caller of abort() |
-| `assert` | `src/nav_service.c` | 38 | `crash_assert` | SIGABRT | user frame is the caller of __assert_fail |
-| `div0` | `src/nav_service.c` | 44 | `crash_div0` | SIGFPE |  |
-| `doublefree` | `src/nav_service.c` | 51 | `crash_doublefree` | SIGABRT | user frame is the caller of free() |
-| `smash` | `src/nav_service.c` | 57 | `crash_smash` | SIGABRT | user frame is the caller of __stack_chk_fail |
+| `null` | `src/nav_service.c` | 20 | `crash_null` | SIGSEGV |  |
+| `stack` | `src/nav_service.c` | 27 | `crash_stack (recursive)` | SIGSEGV | thousands of identical crash_stack frames |
+| `abort` | `src/nav_service.c` | 32 | `crash_abort` | SIGABRT | user frame is the caller of abort() |
+| `assert` | `src/nav_service.c` | 37 | `crash_assert` | SIGABRT | user frame is the caller of __assert_fail |
+| `div0` | `src/nav_service.c` | 43 | `crash_div0` | SIGFPE |  |
+| `doublefree` | `src/nav_service.c` | 50 | `crash_doublefree` | SIGABRT | user frame is the caller of free() |
+| `smash` | `src/nav_service.c` | 56 | `crash_smash` | SIGABRT | user frame is the caller of __stack_chk_fail |
 | `throw` | `src/nav_throw.cpp` | 5 | `crash_throw` | SIGABRT | user frame is the caller of __cxa_throw / terminate |
-| `rodata` | `src/nav_service.c` | 64 | `crash_rodata` | SIGSEGV |  |
+| `rodata` | `src/nav_service.c` | 63 | `crash_rodata` | SIGSEGV |  |
 | `lib` | `src/libweather.c` | 5 | `weather_store` | SIGSEGV | chain: weather_store <- weather_update <- crash_lib <- main |
 
 For SIGABRT modes a real core's frame #0 is inside libc (`raise`/`abort`); the first frame in this
