@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "libweather.h"
+#include "route_table.h" /* generated into build/gen by tools/gen_route.py */
 
 void crash_throw(void); /* src/nav_throw.cpp */
 
@@ -61,6 +62,11 @@ static void crash_lib(void)
     weather_update(42); /* calls into libweather.so, crash is inside the library */
 }
 
+static void crash_gen(void)
+{
+    route_lookup(NULL, 3); /* crash is inside the generated route_table.c */
+}
+
 int main(int argc, char **argv)
 {
     const char *mode = argc > 1 ? argv[1] : "";
@@ -75,6 +81,7 @@ int main(int argc, char **argv)
     else if (!strcmp(mode, "throw"))      crash_throw();
     else if (!strcmp(mode, "rodata"))     crash_rodata();
     else if (!strcmp(mode, "lib"))        crash_lib();
+    else if (!strcmp(mode, "gen"))        crash_gen();
     else {
         fprintf(stderr, "usage: %s null|stack|abort|assert|div0|doublefree|smash|throw|rodata|lib\n", argv[0]);
         return 2;
