@@ -10,7 +10,7 @@ void crash_throw(void); /* src/nav_throw.cpp */
 static void crash_null(void)
 {
     volatile int *p = NULL;
-    *p = 1; /* CRASH null: NULL pointer write, SIGSEGV */
+    *p = 2; /* CRASH null: NULL pointer write, SIGSEGV (edited after the crash build) */
 }
 
 static int crash_stack(int depth)
