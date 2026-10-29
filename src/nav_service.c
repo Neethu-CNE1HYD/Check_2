@@ -7,6 +7,14 @@
 
 void crash_throw(void); /* src/nav_throw.cpp */
 
+#define NAV_VERSION "1.1.0"
+
+static void log_start(const char *mode)
+{
+    fprintf(stderr, "nav_service %s: starting mode '%s'
+", NAV_VERSION, mode);
+}
+
 static void crash_null(void)
 {
     volatile int *p = NULL;
@@ -64,6 +72,8 @@ static void crash_lib(void)
 int main(int argc, char **argv)
 {
     const char *mode = argc > 1 ? argv[1] : "";
+
+    log_start(mode);
 
     if (!strcmp(mode, "null"))            crash_null();
     else if (!strcmp(mode, "stack"))      crash_stack(0);
